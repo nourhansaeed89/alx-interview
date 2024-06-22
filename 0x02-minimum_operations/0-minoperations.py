@@ -1,21 +1,19 @@
 #!/usr/bin/python3
-""" Mini Oper
-    """
+"""
+Module containing method that calculates fewest no. of
+operations needed to result in exactly n H chars"""
 
 
-def minOperations(n: int) -> int:
-    """ Minimum Operations needed to get n H characters """
-    next = 'H'
-    body = 'H'
-    op = 0
-    while (len(body) < n):
-        if n % len(body) == 0:
-            op += 2
-            next = body
-            body += body
-        else:
-            op += 1
-            body += next
-    if len(body) != n:
-        return 0
-    return op
+def minOperations(n):
+    """Function that calculates fewest no. of ops needed for n H chars"""
+
+    operations_needed = 0
+    divisor = 2
+
+    while n > 1:
+        while n % divisor == 0:
+            operations_needed += divisor
+            n /= divisor
+        divisor += 1
+
+    return operations_needed
